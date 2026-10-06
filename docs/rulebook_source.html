@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<style>
+  @page{size:A4;margin:0;}
+  @page{ @bottom-center{content:"Harisumiran Columbus Pickleball Tournament 2026   ·   Page " counter(page) " of " counter(pages); font-size:8.5pt;color:#8a93b0;} }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1c2333;font-size:10.5pt;line-height:1.5}
+  .page{padding:34px 44px 46px;position:relative;page-break-after:always;min-height:100vh}
+  .page:last-child{page-break-after:auto}
+  h1{font-size:30pt;font-weight:800;line-height:1.05}
+  .accent{color:#e8a90c}
+  .blue{color:#3b6fe0}
+  .pink{color:#e0578f}
+  /* COVER */
+  .cover{background:linear-gradient(150deg,#0d1530 0%,#16224a 55%,#1d2e63 100%);color:#fff;
+    display:flex;flex-direction:column;justify-content:center;padding:60px 54px}
+  .cover .kick{display:inline-block;background:linear-gradient(90deg,#ffd23f,#ffab1f);color:#1a1300;
+    font-weight:800;letter-spacing:2px;font-size:10pt;padding:8px 18px;border-radius:30px;text-transform:uppercase;align-self:flex-start}
+  .cover h1{font-size:46pt;margin:26px 0 8px;letter-spacing:-1px}
+  .cover .yr{font-size:64pt;font-weight:900;line-height:.9;background:linear-gradient(90deg,#ffd23f,#ff8a3f);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .cover .tag{font-size:15pt;color:#aebbe6;margin-top:18px;font-weight:300;letter-spacing:.5px}
+  .cover .meta{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap}
+  .cover .chip{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:14px 18px;min-width:120px}
+  .cover .chip b{display:block;font-size:22pt;color:#ffd23f;font-weight:800}
+  .cover .chip span{font-size:8.5pt;color:#9fb0d8;text-transform:uppercase;letter-spacing:1px}
+  .cover .ball{position:absolute;right:-40px;bottom:-40px;width:300px;height:300px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%,#ffe27a,#f2a900 60%,#c98600);opacity:.12}
+  .cover .foot{margin-top:46px;font-size:9.5pt;color:#8a96c0;border-top:1px solid rgba(255,255,255,.12);padding-top:14px}
+  /* CONTENT */
+  .ph{display:flex;align-items:center;gap:12px;border-bottom:3px solid #e8a90c;padding-bottom:10px;margin-bottom:18px}
+  .ph .num{background:#16224a;color:#ffd23f;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15pt}
+  .ph h2{font-size:19pt;font-weight:800;color:#16224a}
+  h3{font-size:12.5pt;color:#16224a;margin:18px 0 6px;display:flex;align-items:center;gap:8px}
+  h3 .e{font-size:14pt}
+  p{margin:5px 0}
+  ul{margin:6px 0 6px 4px;list-style:none}
+  li{position:relative;padding-left:20px;margin:5px 0}
+  li:before{content:"▸";position:absolute;left:0;color:#e8a90c;font-weight:800}
+  .stats{display:flex;gap:12px;margin:6px 0 20px}
+  .stat{flex:1;background:#f3f6ff;border:1px solid #d9e2fb;border-radius:12px;padding:14px;text-align:center}
+  .stat .b{font-size:24pt;font-weight:800;color:#3b6fe0}
+  .stat .l{font-size:8pt;color:#5a6790;text-transform:uppercase;letter-spacing:.6px;margin-top:2px}
+  .flow{display:flex;align-items:stretch;gap:0;margin:14px 0}
+  .step{flex:1;background:#16224a;color:#fff;padding:14px 12px;text-align:center;position:relative}
+  .step:nth-child(2){background:#243466}.step:nth-child(3){background:#32468a}.step:nth-child(4){background:#e8a90c;color:#1a1300}
+  .step .t{font-weight:800;font-size:11pt}.step .s{font-size:8pt;opacity:.85;margin-top:3px}
+  .step:not(:last-child):after{content:"";position:absolute;right:-9px;top:50%;transform:translateY(-50%);
+    border-left:9px solid;border-top:9px solid transparent;border-bottom:9px solid transparent;z-index:2}
+  .step:nth-child(1):after{border-left-color:#16224a}.step:nth-child(2):after{border-left-color:#243466}.step:nth-child(3):after{border-left-color:#32468a}
+  .note{background:#fff8e6;border-left:4px solid #e8a90c;border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:10pt}
+  .danger{background:#fdeef2;border-left:4px solid #e0578f}
+  .two{display:flex;gap:18px}.two>div{flex:1}
+  .card{background:#f8faff;border:1px solid #e2e9fb;border-radius:12px;padding:14px 16px;margin:10px 0}
+  .card h4{color:#16224a;font-size:11pt;margin-bottom:6px}
+  table{width:100%;border-collapse:collapse;margin:8px 0;font-size:9.5pt}
+  th{background:#16224a;color:#fff;padding:8px 10px;text-align:left;font-size:8.5pt;text-transform:uppercase;letter-spacing:.5px}
+  td{padding:7px 10px;border-bottom:1px solid #e2e9fb}
+  tr:nth-child(even) td{background:#f8faff}
+  .court{margin:16px auto;display:block}
+  .legend{display:flex;gap:18px;justify-content:center;font-size:9pt;color:#5a6790;margin-top:6px}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .sw{width:14px;height:10px;border-radius:2px;display:inline-block}
+</style></head>
+<body>
+
+<!-- COVER -->
+<div class="page cover">
+  <div class="ball"></div>
+  <span class="kick">🏓 Harisumiran · Columbus</span>
+  <h1>Pickleball<br>Tournament</h1>
+  <div class="yr">2026</div>
+  <div class="tag">Official Visual Rulebook · Doubles · Round Robin → Knockout</div>
+  <div class="meta">
+    <div class="chip"><b>24</b><span>Teams</span></div>
+    <div class="chip"><b>6</b><span>Groups of 4</span></div>
+    <div class="chip"><b>16</b><span>Knockout spots</span></div>
+    <div class="chip"><b>1</b><span>Champion</span></div>
+  </div>
+  <div class="foot">Mixed-level doubles · Each team = 1 Intermediate + 1 Beginner player · June 6, 2026, Columbus</div>
+</div>
+
+<!-- PAGE 1: FORMAT -->
+<div class="page">
+  <div class="ph"><div class="num">1</div><h2>Tournament Format</h2></div>
+  <p>This is a <b>mixed-level doubles tournament</b>. Every team pairs one <b class="blue">Intermediate</b> player with one <b class="pink">Beginner</b> player, drawn at random. The event runs in two phases:</p>
+
+  <div class="flow">
+    <div class="step"><div class="t">Group Stage</div><div class="s">6 groups × 4 teams · round robin</div></div>
+    <div class="step"><div class="t">Round of 16</div><div class="s">Top 2 + best 4 third-place</div></div>
+    <div class="step"><div class="t">QF & SF</div><div class="s">Single elimination</div></div>
+    <div class="step"><div class="t">Final</div><div class="s">Crown the champions</div></div>
+  </div>
+
+  <h3><span class="e">🎯</span> Phase 1 — Group Stage (Round Robin)</h3>
+  <ul>
+    <li>24 teams are divided into <b>6 groups of 4</b>.</li>
+    <li>Each team plays the other three teams in its group once (<b>6 matches per group</b>, 36 group matches in all).</li>
+    <li>A <b>win earns 2 points</b>; a loss earns 0.</li>
+    <li>The <b>top 2 teams</b> from every group advance automatically — 12 teams.</li>
+  </ul>
+
+  <h3><span class="e">🃏</span> Wildcards — the final 4 spots</h3>
+  <ul>
+    <li>The <b>third-place team</b> from each group (six in total) competes for the last 4 knockout places.</li>
+    <li>These six teams are <b>ranked by points</b>; the <b>best 4 advance</b> as wildcards — making 16 teams.</li>
+    <li>If a points tie decides who takes the 4th wildcard, the tied teams play a <b>tie-breaker match</b>.</li>
+  </ul>
+
+  <h3><span class="e">🏆</span> Phase 2 — Knockout & Seeding</h3>
+  <ul>
+    <li>16 qualifiers enter a single-elimination bracket: <b>Round of 16 → Quarterfinals → Semifinals → Final</b>.</li>
+    <li><b>Seeding:</b> group winners are ranked by points and drawn against the <b>weakest wildcards first</b>; remaining teams are seeded by points.</li>
+    <li><b>No two teams from the same group</b> can meet in the Round of 16.</li>
+    <li>Lose once and you're out. Win and you advance until one team lifts the trophy.</li>
+  </ul>
+
+  <h3><span class="e">📐</span> Group Tie-Breakers (in order)</h3>
+  <table>
+    <tr><th>#</th><th>Tie-breaker</th><th>How it's decided</th></tr>
+    <tr><td>1</td><td>Points</td><td>2 per win — most points ranks higher</td></tr>
+    <tr><td>2</td><td>Head-to-head</td><td>Winner of the match between the tied teams</td></tr>
+    <tr><td>3</td><td>Point differential</td><td>Points scored minus points conceded</td></tr>
+    <tr><td>4</td><td>Tie-breaker match</td><td>If still level for a qualifying spot, play it off</td></tr>
+  </table>
+
+  <div class="note">⏱️ <b>Be on time.</b> Report to your court within <b>5 minutes</b> of being called. A no-show may forfeit the game. A short 2-minute warm-up is allowed before each match if the schedule permits.</div>
+</div>
+
+<!-- PAGE 2: SCORING + COURT -->
+<div class="page">
+  <div class="ph"><div class="num">2</div><h2>Scoring &amp; The Court</h2></div>
+
+  <div class="stats">
+    <div class="stat"><div class="b">11</div><div class="l">Points · Group & early knockout</div></div>
+    <div class="stat"><div class="b">15</div><div class="l">Points · Semifinals & Final</div></div>
+    <div class="stat"><div class="b">2</div><div class="l">Win-by margin</div></div>
+  </div>
+
+  <h3><span class="e">🏓</span> How Scoring Works</h3>
+  <ul>
+    <li>Group and early knockout matches are a <b>single game to 11</b>, win by 2.</li>
+    <li>Semifinals and the Final are a <b>single game to 15</b>, win by 2.</li>
+    <li><b>Rally scoring</b> is used for this tournament: a point is awarded on every rally, no matter who served. (Confirm with organizers if traditional serve-only scoring is preferred.)</li>
+    <li>Always <b>call the score out loud</b> before serving so both teams agree.</li>
+  </ul>
+
+  <h3><span class="e">🟩</span> The Court</h3>
+  <!-- COURT DIAGRAM -->
+  <svg class="court" width="430" height="210" viewBox="0 0 430 210" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="10" width="410" height="190" fill="#2f9e6b" rx="6"/>
+    <rect x="20" y="20" width="390" height="170" fill="none" stroke="#fff" stroke-width="3"/>
+    <!-- kitchen -->
+    <rect x="160" y="20" width="50" height="170" fill="#3fae7b"/>
+    <rect x="220" y="20" width="50" height="170" fill="#3fae7b"/>
+    <!-- net -->
+    <line x1="215" y1="12" x2="215" y2="198" stroke="#16224a" stroke-width="4" stroke-dasharray="5,4"/>
+    <!-- kitchen lines -->
+    <line x1="160" y1="20" x2="160" y2="190" stroke="#fff" stroke-width="3"/>
+    <line x1="270" y1="20" x2="270" y2="190" stroke="#fff" stroke-width="3"/>
+    <!-- center service lines -->
+    <line x1="20" y1="105" x2="160" y2="105" stroke="#fff" stroke-width="2"/>
+    <line x1="270" y1="105" x2="410" y2="105" stroke="#fff" stroke-width="2"/>
+    <text x="90" y="14" fill="#16224a" font-size="9" text-anchor="middle">Baseline</text>
+    <text x="185" y="110" fill="#16224a" font-size="8" text-anchor="middle" transform="rotate(-90 185 105)">KITCHEN</text>
+    <text x="245" y="110" fill="#16224a" font-size="8" text-anchor="middle" transform="rotate(-90 245 105)">KITCHEN</text>
+    <text x="215" y="208" fill="#5a6790" font-size="8.5" text-anchor="middle">NET</text>
+    <text x="90" y="60" fill="#fff" font-size="8" text-anchor="middle">Right service</text>
+    <text x="90" y="155" fill="#fff" font-size="8" text-anchor="middle">Left service</text>
+  </svg>
+  <div class="legend">
+    <span><i class="sw" style="background:#2f9e6b"></i> Playing area</span>
+    <span><i class="sw" style="background:#3fae7b"></i> Kitchen (non-volley zone, 7 ft)</span>
+    <span><i class="sw" style="background:#16224a"></i> Net</span>
+  </div>
+
+  <div class="note">📏 A pickleball court is <b>20 ft × 44 ft</b> (same as doubles badminton). The net is <b>36 inches</b> high at the sidelines and <b>34 inches</b> at the center.</div>
+</div>
+
+<!-- PAGE 3: SERVING + KITCHEN -->
+<div class="page">
+  <div class="ph"><div class="num">3</div><h2>Serving &amp; The Kitchen</h2></div>
+
+  <div class="two">
+    <div>
+      <h3><span class="e">🤚</span> Serving Rules</h3>
+      <ul>
+        <li>Serve <b>underhand</b> — paddle contact below the waist, with an upward arc.</li>
+        <li>Serve <b>diagonally</b> (cross-court) into the opponent's service box.</li>
+        <li>Keep <b>both feet behind the baseline</b> at the moment of contact.</li>
+        <li>The serve must clear the kitchen and its line to be good.</li>
+        <li><b>One serve attempt</b> per server. A serve that clips the net and lands in is played (no lets).</li>
+      </ul>
+    </div>
+    <div>
+      <h3><span class="e">↩️</span> The Two-Bounce Rule</h3>
+      <ul>
+        <li>The receiving team <b>must let the serve bounce</b> before returning it.</li>
+        <li>The serving team <b>must let that return bounce</b> before hitting it.</li>
+        <li>After these two bounces, either team may volley (out of the air) — but only from outside the kitchen.</li>
+      </ul>
+      <div class="card"><h4>Why it matters</h4>The two-bounce rule keeps the game fair and rallies longer by stopping teams from rushing the net to smash the return.</div>
+    </div>
+  </div>
+
+  <h3><span class="e">⛔</span> The Kitchen (Non-Volley Zone)</h3>
+  <ul>
+    <li>The 7-foot zone on each side of the net is the <b>kitchen</b>. You may <b>not volley</b> while standing in it or touching its line.</li>
+    <li>You <b>may</b> step into the kitchen to play a ball that has already <b>bounced</b> — but you must exit before volleying again.</li>
+    <li>If your <b>momentum</b> carries you (or anything you're wearing/holding) into the kitchen right after a volley, it's a fault.</li>
+  </ul>
+
+  <h3><span class="e">⚠️</span> Common Faults</h3>
+  <table>
+    <tr><th>Fault</th><th>What happens</th></tr>
+    <tr><td>Ball hit out of bounds or into the net</td><td>Point to the other team</td></tr>
+    <tr><td>Volleying in / touching the kitchen line</td><td>Point to the other team</td></tr>
+    <tr><td>Breaking the two-bounce rule</td><td>Point to the other team</td></tr>
+    <tr><td>Ball bounces twice before return</td><td>Point to the other team</td></tr>
+    <tr><td>Player or paddle touches the net / post</td><td>Point to the other team</td></tr>
+  </table>
+</div>
+
+<!-- PAGE 4: ETIQUETTE + CHECKLIST -->
+<div class="page">
+  <div class="ph"><div class="num">4</div><h2>Etiquette, Conduct &amp; Day-of</h2></div>
+
+  <h3><span class="e">🤝</span> Sportsmanship &amp; Line Calls</h3>
+  <ul>
+    <li>Call your own lines <b>honestly</b>. When in doubt, the ball is <b>IN</b> — the benefit goes to your opponent.</li>
+    <li>If there's a genuine dispute with no agreement, <b>replay the rally</b>.</li>
+    <li>No coaching during a live rally. Keep a good pace — be ready to serve and receive.</li>
+    <li>Encourage your beginner partner. This is a <b>mixed-level event</b> built on teamwork.</li>
+    <li><b>Paddle-tap</b> at the net after every match, win or lose.</li>
+  </ul>
+
+  <div class="two">
+    <div>
+      <div class="card"><h4>✅ Player Checklist</h4>
+        <ul>
+          <li>Court shoes with good grip</li>
+          <li>Water bottle &amp; a towel</li>
+          <li>Arrive early; know your group</li>
+          <li>Check the schedule between matches</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="card"><h4>🏓 Quick Rules Recap</h4>
+        <ul>
+          <li>Serve underhand &amp; cross-court</li>
+          <li>Let it bounce twice to start</li>
+          <li>Stay out of the kitchen on volleys</li>
+          <li>11 to win (15 in semis &amp; final), win by 2</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3><span class="e">⚖️</span> Organizer Authority</h3>
+  <ul>
+    <li>Organizers' decisions on scheduling, tie-breaks, eligibility, and conduct are <b>final</b>.</li>
+    <li>Unsporting behavior may result in a warning, point penalty, or disqualification.</li>
+  </ul>
+
+  <div class="note">🌟 <b>Spirit of the tournament:</b> Harisumiran Columbus 2026 is a friendly community event. Play hard, play fair, lift up the first-timers, and make sure everyone leaves the court smiling. Good luck to all 24 teams!</div>
+
+  <div style="margin-top:30px;text-align:center;color:#8a93b0;font-size:9pt;border-top:1px solid #e2e9fb;padding-top:14px">
+    Harisumiran Columbus Pickleball Tournament · June 6, 2026 · For questions, see the organizing team.
+  </div>
+</div>
+
+</body></html>

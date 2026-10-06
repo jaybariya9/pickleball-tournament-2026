@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Editor / OS junk
+Thumbs.db
+*.swp
+*~
+
+# Local notes / exports (uncomment if you keep scratch files here)
+# *.local.json

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Harisumiran Columbus Pickleball Tournament 2026</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#141b33; --panel2:#1b2444; --line:#27325c;
+    --txt:#eaf0ff; --mut:#9fb0d8; --acc:#ffd23f; --acc2:#22d3a6;
+    --inter:#5b8cff; --beg:#ff7ab6; --win:#22d3a6; --shadow:0 10px 30px rgba(0,0,0,.45);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    background:radial-gradient(1200px 600px at 80% -10%,#1a2a55,transparent),
+    linear-gradient(180deg,#0b1020,#0a0f1e);background-color:var(--bg);color:var(--txt);}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 18px 80px}
+  header.hero{padding:34px 0 18px;text-align:center}
+  .badge{display:inline-block;background:linear-gradient(90deg,var(--acc),#ffb020);color:#1a1300;
+    font-weight:800;letter-spacing:.5px;padding:6px 14px;border-radius:999px;font-size:12px;text-transform:uppercase}
+  h1{font-size:clamp(26px,5vw,46px);margin:14px 0 6px;line-height:1.05;
+    background:linear-gradient(90deg,#fff,#bcd0ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--mut);font-size:15px}
+  .pill{display:inline-flex;gap:8px;align-items:center;background:var(--panel);border:1px solid var(--line);
+    padding:8px 14px;border-radius:999px;margin:6px 5px;font-size:13px;color:var(--mut)}
+  .pill b{color:var(--txt)}
+  nav.tabs{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 26px;position:sticky;top:0;
+    background:linear-gradient(180deg,#0b1020 70%,transparent);padding:10px 0 12px;z-index:50}
+  nav.tabs button{background:var(--panel);color:var(--mut);border:1px solid var(--line);padding:10px 16px;
+    border-radius:12px;cursor:pointer;font-weight:600;font-size:14px;transition:.15s}
+  nav.tabs button:hover{color:var(--txt);border-color:#3b4a82}
+  nav.tabs button.active{background:linear-gradient(90deg,var(--acc),#ffb020);color:#1a1300;border-color:transparent;box-shadow:var(--shadow)}
+  section.view{display:none;animation:fade .35s ease}
+  section.view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);
+    border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+  h2.sec{font-size:22px;margin:0 0 4px}
+  .lead{color:var(--mut);margin:0 0 18px;font-size:14px}
+  /* DRAW */
+  .draw-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+  .btn{background:linear-gradient(90deg,var(--acc),#ffb020);color:#1a1300;border:none;font-weight:800;
+    padding:13px 22px;border-radius:12px;cursor:pointer;font-size:15px;box-shadow:var(--shadow)}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
+  .btn.ghost{background:var(--panel);color:var(--txt);border:1px solid var(--line);box-shadow:none}
+  .lock-tag{display:inline-flex;gap:6px;align-items:center;color:var(--acc2);font-weight:700;font-size:13px}
+  .grid-teams{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+  .team{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:13px 15px;
+    display:flex;align-items:center;gap:12px;opacity:0;transform:translateY(14px) scale(.96)}
+  .team.show{opacity:1;transform:none;transition:.45s cubic-bezier(.2,.8,.2,1)}
+  .tnum{min-width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-weight:800;
+    background:linear-gradient(135deg,var(--acc),#ffb020);color:#1a1300}
+  .tnames{display:flex;flex-direction:column;gap:2px}
+  .tnames .a{font-weight:700;font-size:15px}
+  .tnames .a .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .tnames small{color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;margin:6px 0 16px;font-size:13px;color:var(--mut)}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .swatch{width:12px;height:12px;border-radius:3px;display:inline-block}
+  /* GROUPS */
+  .groups-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+  .group{background:var(--panel2);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .group h3{margin:0;padding:12px 16px;background:linear-gradient(90deg,#202b52,#1a2347);font-size:16px;
+    display:flex;justify-content:space-between;align-items:center}
+  .group h3 .g{color:var(--acc)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:8px 10px;text-align:center;border-bottom:1px solid var(--line)}
+  th{color:var(--mut);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.4px}
+  td.tn{text-align:left;font-weight:600}
+  tr.qual td{background:rgba(34,211,166,.08)}
+  tr.qual td.tn::after{content:'▲';color:var(--acc2);margin-left:6px;font-size:10px}
+  .matches{padding:8px 14px 14px}
+  .matches h4{margin:10px 0 6px;font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px}
+  .match{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px dashed var(--line)}
+  .match:last-child{border-bottom:none}
+  .match .mt{flex:1;font-size:13px}
+  .match input{width:46px;background:var(--bg);border:1px solid var(--line);color:var(--txt);
+    border-radius:8px;padding:6px;text-align:center;font-size:14px}
+  .vs{color:var(--mut);font-size:11px}
+  /* BRACKET */
+  .bracket{display:flex;gap:26px;overflow-x:auto;padding:8px 4px 18px}
+  .round{display:flex;flex-direction:column;justify-content:space-around;gap:14px;min-width:210px}
+  .round .rh{text-align:center;color:var(--acc);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.6px;margin-bottom:4px}
+  .bm{background:var(--panel2);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .bm .row{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;font-size:13px;gap:8px}
+  .bm .row+.row{border-top:1px solid var(--line)}
+  .bm .row input{width:42px;background:var(--bg);border:1px solid var(--line);color:var(--txt);border-radius:7px;padding:5px;text-align:center}
+  .bm .row.w{background:rgba(34,211,166,.12)}
+  .bm .row.w .nm{color:var(--acc2);font-weight:700}
+  .nm{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .champ{margin-top:14px;text-align:center;padding:18px;border-radius:16px;
+    background:linear-gradient(135deg,#2a2150,#1a2347);border:1px solid var(--acc)}
+  .champ .t{color:var(--acc);font-weight:800;font-size:13px;letter-spacing:1px;text-transform:uppercase}
+  .champ .n{font-size:24px;font-weight:800;margin-top:6px}
+  /* RULES */
+  .rules h3{color:var(--acc);margin:22px 0 8px;font-size:18px;display:flex;align-items:center;gap:10px}
+  .rules h3 .ic{width:30px;height:30px;border-radius:8px;background:var(--panel2);display:grid;place-items:center;font-size:16px}
+  .rules p,.rules li{color:#d6e0fb;font-size:14.5px;line-height:1.65}
+  .rules ul{margin:6px 0 6px}
+  .ruleboxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0}
+  .rbox{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .rbox .big{font-size:30px;font-weight:800;color:var(--acc)}
+  .rbox .lbl{color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+  .note{background:rgba(255,210,63,.08);border:1px solid rgba(255,210,63,.3);border-radius:12px;padding:12px 16px;margin:12px 0;font-size:14px}
+  .foot{text-align:center;color:var(--mut);font-size:12px;margin-top:30px}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+  @media print{nav.tabs,.draw-controls,.toolbar{display:none}section.view{display:block!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <span class="badge">🏓 Harisumiran · Columbus</span>
+    <h1>Pickleball Tournament 2026</h1>
+    <div class="sub">Doubles · Round Robin → Knockout · June 6, 2026</div>
+    <div style="margin-top:14px">
+      <span class="pill">👥 <b>24</b> Teams</span>
+      <span class="pill">🎯 <b>8</b> Groups of 3</span>
+      <span class="pill">🏆 <b>16</b> Advance to Knockout</span>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button data-t="draw" class="active">🎲 The Draw</button>
+    <button data-t="groups">📊 Groups &amp; Standings</button>
+    <button data-t="bracket">🏆 Knockout Bracket</button>
+    <button data-t="rules">📖 Rulebook</button>
+  </nav>
+
+  <!-- DRAW -->
+  <section class="view active" id="draw">
+    <div class="card">
+      <h2 class="sec">🎲 Official Team Draw</h2>
+      <p class="lead">Each team pairs one <b style="color:var(--inter)">Intermediate</b> player with one <b style="color:var(--beg)">Beginner</b> player. The draw is <b>locked</b> — these pairings are final.</p>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--inter)"></i> Intermediate pot</span>
+        <span><i class="swatch" style="background:var(--beg)"></i> Beginner pot</span>
+      </div>
+      <div class="draw-controls">
+        <button class="btn" id="revealBtn">✨ Reveal the Draw</button>
+        <button class="btn ghost" id="revealAll">Show all instantly</button>
+        <span class="lock-tag">🔒 Locked draw — final pairings</span>
+      </div>
+      <div class="grid-teams" id="teamGrid"></div>
+    </div>
+  </section>
+
+  <!-- GROUPS -->
+  <section class="view" id="groups">
+    <div class="card">
+      <h2 class="sec">📊 Group Stage — Round Robin</h2>
+      <p class="lead">8 groups of 3. Everyone plays everyone in their group. Enter scores below — standings and qualifiers (top 2 ▲) update live. Top 2 from each group advance to the Knockout Bracket.</p>
+      <div class="toolbar">
+        <button class="btn ghost" id="resetGroups">↺ Reset all group scores</button>
+      </div>
+      <div class="groups-grid" id="groupsGrid"></div>
+    </div>
+  </section>
+
+  <!-- BRACKET -->
+  <section class="view" id="bracket">
+    <div class="card">
+      <h2 class="sec">🏆 Knockout Bracket</h2>
+      <p class="lead">16 qualifiers — single elimination. Group winners are seeded against runners-up. Fill group scores first, then enter knockout results here. Winners auto-advance.</p>
+      <div class="toolbar">
+        <button class="btn ghost" id="seedBracket">⟳ Seed from group results</button>
+        <button class="btn ghost" id="resetBracket">↺ Reset knockout scores</button>
+      </div>
+      <div class="bracket" id="bracketEl"></div>
+      <div class="champ" id="champBox" style="display:none">
+        <div class="t">🏆 Champions</div>
+        <div class="n" id="champName">—</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RULES -->
+  <section class="view" id="rules">
+    <div class="card rules">
+      <h2 class="sec">📖 Tournament Rulebook</h2>
+      <p class="lead">Everything players and referees need to know. A printable PDF version is provided separately.</p>
+
+      <div class="ruleboxes">
+        <div class="rbox"><div class="big">11</div><div class="lbl">Points to win (group)</div></div>
+        <div class="rbox"><div class="big">15</div><div class="lbl">Points — semis &amp; final</div></div>
+        <div class="rbox"><div class="big">2</div><div class="lbl">Win-by margin</div></div>
+        <div class="rbox"><div class="big">2v2</div><div class="lbl">Doubles format</div></div>
+      </div>
+
+      <h3><span class="ic">🎯</span> Tournament Format</h3>
+      <p>The tournament is a <b>doubles event</b> played in two phases:</p>
+      <ul>
+        <li><b>Group Stage (Round Robin):</b> 24 teams are split into 8 groups of 3. Each team plays the other two teams in its group once. Win = 2 points, loss = 0 points in the group table.</li>
+        <li><b>Knockout Stage (Single Elimination):</b> The top 2 teams from each group (16 teams) advance to a single-elimination bracket: Round of 16 → Quarterfinals → Semifinals → Final. Lose once and you're out.</li>
+      </ul>
+
+      <h3><span class="ic">📐</span> Group Tie-Breakers</h3>
+      <p>If teams finish level on group points, rank them by, in order:</p>
+      <ul>
+        <li>Head-to-head result between the tied teams</li>
+        <li>Point differential (points scored minus points conceded)</li>
+        <li>Total points scored</li>
+        <li>If still tied: a single sudden-death rally (one point decides)</li>
+      </ul>
+
+      <h3><span class="ic">🏓</span> Scoring</h3>
+      <ul>
+        <li><b>Group &amp; early knockout matches:</b> single game to <b>11 points, win by 2</b>.</li>
+        <li><b>Semifinals &amp; Final:</b> single game to <b>15 points, win by 2</b>.</li>
+        <li><b>Rally scoring</b> is used: a point is scored on every rally regardless of who served. (If you prefer traditional scoring, only the serving side scores — confirm with organizers before play.)</li>
+        <li>Call the score out loud before every serve.</li>
+      </ul>
+
+      <h3><span class="ic">🤚</span> Serving Rules</h3>
+      <ul>
+        <li>Serve <b>underhand</b>, contact below the waist, with an upward arc.</li>
+        <li>Serve <b>diagonally</b> (cross-court) into the opponent's service box, clearing the non-volley zone.</li>
+        <li>Keep both feet behind the baseline at contact; the serve is made from behind the baseline.</li>
+        <li>One serve attempt per server (no "lets" on serves that clip the net and land in — play continues).</li>
+      </ul>
+
+      <h3><span class="ic">⛔</span> The Kitchen (Non-Volley Zone)</h3>
+      <ul>
+        <li>The 7-foot zone on each side of the net is the "kitchen." You <b>may not volley</b> (hit the ball out of the air) while standing in it or touching its line.</li>
+        <li>You may enter the kitchen to play a ball that has <b>bounced</b>, but must exit before volleying again.</li>
+        <li>Momentum that carries you into the kitchen after a volley is a fault.</li>
+      </ul>
+
+      <h3><span class="ic">↩️</span> The Two-Bounce Rule</h3>
+      <p>After the serve, the ball <b>must bounce once on each side</b> before either team may volley: the receiving team must let the serve bounce, and the serving team must let the return bounce. After those two bounces, volleys are allowed (outside the kitchen).</p>
+
+      <h3><span class="ic">⚠️</span> Faults</h3>
+      <ul>
+        <li>Hitting the ball out of bounds or into the net.</li>
+        <li>Volleying from inside the kitchen or touching its line.</li>
+        <li>Violating the two-bounce rule.</li>
+        <li>The ball bouncing twice before being returned.</li>
+        <li>A player or paddle touching the net or net post during play.</li>
+      </ul>
+
+      <h3><span class="ic">🤝</span> Etiquette &amp; Conduct</h3>
+      <ul>
+        <li>Call your own lines honestly; when in doubt, the ball is <b>in</b> (benefit goes to the opponent).</li>
+        <li>Disputed calls with no clear consensus: <b>replay the rally</b>.</li>
+        <li>No coaching during a rally. Keep the pace — be ready to serve/receive promptly.</li>
+        <li>Respect every player regardless of level. Encourage your beginner partner — this is a mixed-level event.</li>
+        <li>Paddle-tap at the net after every match. Win or lose, show good sportsmanship.</li>
+      </ul>
+
+      <h3><span class="ic">⏱️</span> Logistics &amp; Day-of Rules</h3>
+      <ul>
+        <li>Teams must report to their court within <b>5 minutes</b> of being called; a no-show may forfeit the game.</li>
+        <li>A 2-minute warm-up is allowed before each match if time permits.</li>
+        <li>Bring water and appropriate court shoes. Stay hydrated between matches.</li>
+        <li>Organizers' decisions on scheduling, tie-breaks, and conduct are <b>final</b>.</li>
+      </ul>
+
+      <div class="note">⚖️ <b>Spirit of the tournament:</b> This is a friendly, mixed-level community event. Play hard, play fair, and make sure everyone — especially first-timers — has a great time on the court.</div>
+    </div>
+  </section>
+
+  <div class="foot">Harisumiran Columbus Pickleball Tournament 2026 · Locked draw generated June 5, 2026 · Scores save automatically in this browser.</div>
+</div>
+
+<script>
+/* ===== LOCKED DRAW DATA ===== */
+const TEAMS = [
+ {id:1,inter:"Hiteshbhai",beg:"Jigarbhai"},{id:2,inter:"Kevin",beg:"Pushpeetbhai"},
+ {id:3,inter:"Jay Thaker",beg:"Ashish"},{id:4,inter:"Jaikisan",beg:"Prabhusheelbhai"},
+ {id:5,inter:"Nirav",beg:"Amit"},{id:6,inter:"Sonubhai",beg:"Divyang Prajapati"},
+ {id:7,inter:"Anshul",beg:"Harnish"},{id:8,inter:"Vishesh",beg:"Arya"},
+ {id:9,inter:"Sarvam",beg:"Smeetbhai"},{id:10,inter:"Ayush",beg:"Preyankbhai"},
+ {id:11,inter:"Utsav",beg:"Kaanav"},{id:12,inter:"Gyanbhai",beg:"Suketubhai"},
+ {id:13,inter:"Shubham",beg:"Dhruv"},{id:14,inter:"Biren",beg:"Tarakbhai"},
+ {id:15,inter:"Kaushal",beg:"Kairav"},{id:16,inter:"Jay Bariya",beg:"Utkarsh"},
+ {id:17,inter:"Neel",beg:"Vraj"},{id:18,inter:"Rohan",beg:"Rajubhai"},
+ {id:19,inter:"Jay Mistry",beg:"Divyang Patel"},{id:20,inter:"Jigneshbhai",beg:"Vimalbhai"},
+ {id:21,inter:"Jay",beg:"Sandipbhai"},{id:22,inter:"Maanav",beg:"Ravi"},
+ {id:23,inter:"Manan",beg:"Guru"},{id:24,inter:"Mananbhai",beg:"Krishbhai"}
+];
+const GROUPS = {A:[9,13,23],B:[18,16,3],C:[6,4,22],D:[15,14,12],E:[10,11,7],F:[21,2,19],G:[24,17,5],H:[1,8,20]};
+const GLET = Object.keys(GROUPS);
+const T = id => TEAMS.find(t=>t.id===id);
+const tname = id => { const t=T(id); return t? `${t.inter} / ${t.beg}` : "—"; };
+
+/* ===== STORAGE ===== */
+const KEY='hcpt2026';
+let store = {groups:{},knock:{}};
+try{ const s=localStorage.getItem(KEY); if(s) store=JSON.parse(s); }catch(e){}
+function save(){ try{ localStorage.setItem(KEY,JSON.stringify(store)); }catch(e){} }
+
+/* ===== TABS ===== */
+document.querySelectorAll('nav.tabs button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('section.view').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.t).classList.add('active');
+  };
+});
+
+/* ===== DRAW ===== */
+const grid=document.getElementById('teamGrid');
+TEAMS.forEach(t=>{
+  const d=document.createElement('div'); d.className='team';
+  d.innerHTML=`<div class="tnum">${t.id}</div>
+   <div class="tnames">
+     <div class="a"><span class="dot" style="background:var(--inter)"></span>${t.inter}</div>
+     <div class="a"><span class="dot" style="background:var(--beg)"></span>${t.beg}</div>
+     <small>Team ${t.id}</small>
+   </div>`;
+  grid.appendChild(d);
+});
+const cards=[...grid.children];
+let revealed=false;
+function reveal(stagger){
+  if(revealed)return; revealed=true;
+  document.getElementById('revealBtn').disabled=true;
+  cards.forEach((c,i)=> setTimeout(()=>c.classList.add('show'), stagger? i*140 : 0));
+}
+document.getElementById('revealBtn').onclick=()=>reveal(true);
+document.getElementById('revealAll').onclick=()=>reveal(false);
+
+/* ===== GROUPS ===== */
+function rrPairs(ids){ return [[ids[0],ids[1]],[ids[0],ids[2]],[ids[1],ids[2]]]; }
+function mkey(g,a,b){return `${g}_${a}_${b}`;}
+function buildGroups(){
+  const wrap=document.getElementById('groupsGrid'); wrap.innerHTML='';
+  GLET.forEach(g=>{
+    const ids=GROUPS[g];
+    const stand=standings(g);
+    const el=document.createElement('div'); el.className='group';
+    let rows=stand.map((s,i)=>`<tr class="${i<2?'qual':''}">
+       <td class="tn">${tname(s.id)}</td><td>${s.p}</td><td>${s.w}</td><td>${s.pf}</td><td>${s.pa}</td><td>${s.pd>0?'+':''}${s.pd}</td></tr>`).join('');
+    let m=rrPairs(ids).map(([a,b])=>{
+      const k=mkey(g,a,b); const v=store.groups[k]||{};
+      return `<div class="match">
+        <span class="mt">${tname(a)}</span>
+        <input type="number" min="0" data-gk="${k}" data-s="a" value="${v.a??''}">
+        <span class="vs">vs</span>
+        <input type="number" min="0" data-gk="${k}" data-s="b" value="${v.b??''}">
+        <span class="mt" style="text-align:right">${tname(b)}</span>
+      </div>`;
+    }).join('');
+    el.innerHTML=`<h3><span class="g">Group ${g}</span><span style="font-size:12px;color:var(--mut)">3 teams · top 2 ▲</span></h3>
+      <table><thead><tr><th style="text-align:left">Team</th><th>Pts</th><th>W</th><th>PF</th><th>PA</th><th>Diff</th></tr></thead><tbody>${rows}</tbody></table>
+      <div class="matches"><h4>Round Robin Matches</h4>${m}</div>`;
+    wrap.appendChild(el);
+  });
+  wrap.querySelectorAll('input[data-gk]').forEach(inp=>{
+    inp.onchange=()=>{
+      const k=inp.dataset.gk; store.groups[k]=store.groups[k]||{};
+      store.groups[k][inp.dataset.s]= inp.value===''? null : +inp.value;
+      save(); buildGroups();
+    };
+  });
+}
+function standings(g){
+  const ids=GROUPS[g];
+  const tab={}; ids.forEach(id=>tab[id]={id,p:0,w:0,pf:0,pa:0,pd:0});
+  rrPairs(ids).forEach(([a,b])=>{
+    const v=store.groups[mkey(g,a,b)]; if(!v||v.a==null||v.b==null)return;
+    tab[a].pf+=v.a;tab[a].pa+=v.b;tab[b].pf+=v.b;tab[b].pa+=v.a;
+    if(v.a>v.b){tab[a].w++;tab[a].p+=2;} else if(v.b>v.a){tab[b].w++;tab[b].p+=2;}
+  });
+  ids.forEach(id=>tab[id].pd=tab[id].pf-tab[id].pa);
+  return ids.map(id=>tab[id]).sort((x,y)=> y.p-x.p || y.pd-x.pd || y.pf-x.pf);
+}
+function qualifier(g,rank){ return standings(g)[rank].id; }
+document.getElementById('resetGroups').onclick=()=>{ if(confirm('Clear all group scores?')){store.groups={};save();buildGroups();} };
+
+/* ===== BRACKET ===== */
+// R16 pairings: winner vs runner-up cross-group
+const R16=[['A',1,'B',2],['C',1,'D',2],['E',1,'F',2],['G',1,'H',2],
+          ['B',1,'A',2],['D',1,'C',2],['F',1,'E',2],['H',1,'G',2]];
+function buildBracket(){
+  const el=document.getElementById('bracketEl'); el.innerHTML='';
+  // seed R16 teams from groups (rank 0=winner,1=runnerup) if not manually overridden
+  const r16teams = R16.map(([g1,r1,g2,r2])=>{
+    return [ store.knock.seed? store.knock.seed[`${g1}${r1}`] : qualifier(g1,r1-1),
+             store.knock.seed? store.knock.seed[`${g2}${r2}`] : qualifier(g2,r2-1) ];
+  });
+  const rounds=[
+    {name:'Round of 16',n:8},{name:'Quarterfinals',n:4},
+    {name:'Semifinals',n:2},{name:'Final',n:1}
+  ];
+  // compute results progressively
+  let prevWinners=null;
+  rounds.forEach((rd,ri)=>{
+    const col=document.createElement('div'); col.className='round';
+    col.innerHTML=`<div class="rh">${rd.name}</div>`;
+    const winners=[];
+    for(let i=0;i<rd.n;i++){
+      let a,b;
+      if(ri===0){ a=r16teams[i][0]; b=r16teams[i][1]; }
+      else { a=prevWinners[i*2]; b=prevWinners[i*2+1]; }
+      const kk=`r${ri}_${i}`; const v=store.knock[kk]||{};
+      const wa = (v.a!=null&&v.b!=null&&v.a>v.b);
+      const wb = (v.a!=null&&v.b!=null&&v.b>v.a);
+      winners.push(wa? a : wb? b : null);
+      const bm=document.createElement('div'); bm.className='bm';
+      bm.innerHTML=`
+        <div class="row ${wa?'w':''}"><span class="nm">${a?tname(a):'—'}</span><input type="number" min="0" data-kk="${kk}" data-s="a" value="${v.a??''}"></div>
+        <div class="row ${wb?'w':''}"><span class="nm">${b?tname(b):'—'}</span><input type="number" min="0" data-kk="${kk}" data-s="b" value="${v.b??''}"></div>`;
+      col.appendChild(bm);
+    }
+    el.appendChild(col);
+    prevWinners=winners;
+  });
+  // champion
+  const champ=prevWinners&&prevWinners[0];
+  const cb=document.getElementById('champBox');
+  if(champ){ cb.style.display='block'; document.getElementById('champName').textContent=tname(champ); }
+  else cb.style.display='none';
+  el.querySelectorAll('input[data-kk]').forEach(inp=>{
+    inp.onchange=()=>{
+      const k=inp.dataset.kk; store.knock[k]=store.knock[k]||{};
+      store.knock[k][inp.dataset.s]= inp.value===''? null : +inp.value;
+      save(); buildBracket();
+    };
+  });
+}
+document.getElementById('seedBracket').onclick=()=>{
+  // freeze current group qualifiers into the bracket seeds
+  const seed={};
+  GLET.forEach(g=>{ seed[`${g}1`]=qualifier(g,0); seed[`${g}2`]=qualifier(g,1); });
+  store.knock.seed=seed; save(); buildBracket();
+  alert('Bracket seeded from current group standings.');
+};
+document.getElementById('resetBracket').onclick=()=>{
+  if(confirm('Clear knockout scores and re-seed from groups?')){
+    store.knock={}; save(); buildBracket();
+  }
+};
+
+buildGroups();
+buildBracket();
+</script>
+</body>
+</html>
